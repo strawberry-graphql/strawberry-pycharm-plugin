@@ -1,5 +1,5 @@
 """
-The Mock is for testing pydantic with builtins
+The Mock is for testing strawberry with builtins
 """
 
 
