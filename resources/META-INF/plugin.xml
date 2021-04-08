@@ -1,6 +1,6 @@
 <idea-plugin url="https://github.com/strawberry-graphql/strawberry-pycharm-plugin" require-restart="true">
     <id>rocks.strawberry</id>
-    <name>Strawberry-Graphql</name>
+    <name>Strawberry-GraphQL</name>
     <version>0.0.1</version>
     <vendor email="koaxudai@gmail.com">TODO Koudai Aono @koxudaxi</vendor>
     <change-notes><![CDATA[
@@ -27,4 +27,3 @@
 
     <resource-bundle/>
 </idea-plugin>
-
