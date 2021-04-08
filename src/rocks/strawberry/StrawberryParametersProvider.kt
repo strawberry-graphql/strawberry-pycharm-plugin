@@ -27,6 +27,6 @@ class StrawberryParametersProvider: PyDataclassParametersProvider {
 
       companion object {
             private val DATACLASS_QUALIFIED_NAME = QualifiedName.fromDottedString("strawberry.type")
-            private val DATACLASS_ARGUMENTS = listOf("init", "repr", "eq", "order", "unsafe_hash", "frozen", "config")
+            private val DATACLASS_ARGUMENTS = listOf("name", "is_input", "is_interface", "description", "federation")
       }
 }
