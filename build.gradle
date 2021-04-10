@@ -22,6 +22,10 @@ intellij {
     plugins "python-ce"
 }
 
+publishPlugin {
+    token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
+}
+
 allprojects {
     apply plugin: "org.jetbrains.intellij"
     apply plugin: "kotlin"
