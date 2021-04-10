@@ -48,4 +48,4 @@ jobs:
      - name: Publish a plugin
        run: ./gradlew publishPlugin
        env:
-         ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.JETBRAINS_TOKEN }}
+         ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.ORG_GRADLE_PROJECT_INTELLIJPUBLISHTOKEN }}
