@@ -46,7 +46,6 @@ jobs:
           asset_name: strawberry-pycharm-plugin.zip
           asset_content_type: application/zip
      - name: Publish a plugin
-       run: |
-         curl --fail --header "Authorization: Bearer ${{secrets.JETBRAINS_TOKEN}}" \
-               -F pluginId=xxxx -F file=@build/distributions/strawberry-pycharm-plugin.zip \
-                https://plugins.jetbrains.com/plugin/uploadPlugin
+       run: ./gradlew publishPlugin
+       env:
+         ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.JETBRAINS_TOKEN }}
