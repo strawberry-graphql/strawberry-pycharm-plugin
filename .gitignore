@@ -1,3 +1,4 @@
+.DS_Store
 # Compiled class file
 *.class
 
@@ -31,6 +32,7 @@ hs_err_pid*
 .idea/libraries/
 .idea/dictionaries
 .idea/.name
+.idea/*
 *.iml
 
 /build/
