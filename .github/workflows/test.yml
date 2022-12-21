@@ -24,8 +24,8 @@ jobs:
     - name: test 
       run: ./gradlew buildPlugin test jacocoTestReport
     - name: IntelliJ Platform Plugin Verifier
-      uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
+      uses: ChrisCarini/intellij-platform-plugin-verifier-action@v1.2.1
       with: 
         ide-versions: |
-            pycharmPC:2020.2
+            pycharmPC:2022.2
             pycharmPC:LATEST-EAP-SNAPSHOT
