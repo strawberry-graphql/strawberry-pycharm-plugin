@@ -20,7 +20,7 @@
     <p>This plugin provides autocomplete for <a href="https://strawberry.rocks">Strawberry GraphQL</a>.</p>
     ]]></description>
 
-    <idea-version since-build="211.6693.111"/>
+    <idea-version since-build="223"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.python</depends>
