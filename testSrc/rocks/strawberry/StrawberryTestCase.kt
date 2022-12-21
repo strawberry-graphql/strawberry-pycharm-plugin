@@ -50,7 +50,7 @@ abstract class StrawberryTestCase : UsefulTestCase() {
     override fun setUp() {
         super.setUp()
         val factory = IdeaTestFixtureFactory.getFixtureFactory()
-        val fixtureBuilder = factory.createLightFixtureBuilder(projectDescriptor)
+        val fixtureBuilder = factory.createLightFixtureBuilder(projectDescriptor, "PyLightProject")
         val fixture = fixtureBuilder.fixture
         myFixture = IdeaTestFixtureFactory.getFixtureFactory().createCodeInsightFixture(fixture,
                 LightTempDirTestFixtureImpl(true))
