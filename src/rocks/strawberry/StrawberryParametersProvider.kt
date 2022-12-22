@@ -7,6 +7,8 @@ import com.jetbrains.python.codeInsight.PyDataclassParametersProvider
 import com.jetbrains.python.psi.PyElementGenerator
 import com.jetbrains.python.psi.types.PyCallableParameter
 import com.jetbrains.python.psi.types.PyCallableParameterImpl
+import com.jetbrains.python.psi.PyClass
+import com.jetbrains.python.psi.types.TypeEvalContext
 
 class StrawberryParametersProvider: PyDataclassParametersProvider {
 
@@ -19,6 +21,8 @@ class StrawberryParametersProvider: PyDataclassParametersProvider {
             parameters.addAll(DATACLASS_ARGUMENTS.map { name -> PyCallableParameterImpl.nonPsi(name, null, ellipsis) })
             return Triple(DATACLASS_QUALIFIED_NAME, StrawberryType, parameters)
       }
+
+      override fun getDataclassParameters(cls: PyClass, context: TypeEvalContext?): PyDataclassParameters? = null
 
       private object StrawberryType: PyDataclassParameters.Type {
             override val name: String = "strawberry"
