@@ -5,7 +5,7 @@
     <vendor email="hello@strawberry.rocks">Strawberry GraphQL</vendor>
     <change-notes><![CDATA[
     <h2>version 0.0.11</h2>
-    <p>Features</p>
+    <p>Bugfix</p>
     <ul>
         <li>Reduce unnecessary resolve in type providers</li>
     </ul>
