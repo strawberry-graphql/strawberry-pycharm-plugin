@@ -1,9 +1,14 @@
 <idea-plugin url="https://github.com/strawberry-graphql/strawberry-pycharm-plugin" require-restart="true">
     <id>rocks.strawberry</id>
     <name>Strawberry GraphQL</name>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <vendor email="hello@strawberry.rocks">Strawberry GraphQL</vendor>
     <change-notes><![CDATA[
+    <h2>version 0.0.11</h2>
+    <p>Bugfix</p>
+    <ul>
+        <li>Reduce unnecessary resolve in type providers</li>
+    </ul>
     <h2>version 0.0.10</h2>
     <p>Features</p>
     <ul>
