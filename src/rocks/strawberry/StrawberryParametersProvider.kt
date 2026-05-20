@@ -17,7 +17,7 @@ class StrawberryParametersProvider: PyDataclassParametersProvider {
 
       override fun getDecoratorAndTypeAndParameters(project: Project): Triple<QualifiedName, PyDataclassParameters.Type, List<PyCallableParameter>> {
             val generator = PyElementGenerator.getInstance(project)
-            val ellipsis = generator.createExpressionFromText(LanguageLevel.PYTHON30, "...")
+            val ellipsis = generator.createExpressionFromText(LanguageLevel.getDefault(), "...")
             val parameters = mutableListOf(PyCallableParameterImpl.psi(generator.createSingleStarParameter()))
             parameters.addAll(DATACLASS_ARGUMENTS.map { name -> PyCallableParameterImpl.nonPsi(name, null, ellipsis) })
             return Triple(DATACLASS_QUALIFIED_NAME, StrawberryType, parameters)
