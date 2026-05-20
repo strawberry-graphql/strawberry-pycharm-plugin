@@ -22,7 +22,7 @@ jobs:
         distribution: zulu
         java-version: 17
     - name: test 
-      run: ./gradlew buildPlugin test jacocoTestReport
+      run: xvfb-run -a ./gradlew buildPlugin test jacocoTestReport
     - name: Verify Plugin on IntelliJ Platforms
       id: verify
       uses: ChrisCarini/intellij-platform-plugin-verifier-action@latest
