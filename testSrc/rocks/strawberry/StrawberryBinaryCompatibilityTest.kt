@@ -1,13 +1,12 @@
 package rocks.strawberry
 
+import com.intellij.testFramework.UsefulTestCase
 import org.junit.Assert.assertFalse
-import org.junit.Test
 import java.nio.charset.StandardCharsets
 
-class StrawberryBinaryCompatibilityTest {
+class StrawberryBinaryCompatibilityTest : UsefulTestCase() {
 
-    @Test
-    fun parametersProviderDoesNotLinkDirectlyToCreateEllipsis() {
+    fun testParametersProviderDoesNotLinkDirectlyToCreateEllipsis() {
         val classBytes = requireNotNull(
             StrawberryParametersProvider::class.java.classLoader.getResourceAsStream(
                 "rocks/strawberry/StrawberryParametersProvider.class",
