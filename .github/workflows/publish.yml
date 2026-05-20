@@ -3,50 +3,39 @@ name: Publish
 on:
   push:
     tags:
-      - '**'
+      - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   build-n-publish:
-    name: Build and publish plugin 📦 to JetBrains merket
-    if: "success() && startsWith(github.ref, 'refs/tags/')"
-    runs-on: ubuntu-latest
+    name: Build and publish plugin to JetBrains Marketplace
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-22.04
     steps:
-     - uses: actions/checkout@v2
-     - name: Cache
-       uses: actions/cache@v1.1.2
-       with:
-        path: ~/.gradle
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/build.gradle') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-     - name: Setup Java
-       uses: actions/setup-java@v3.9.0
-       with:
-         distribution: zulu
-         java-version: 17
-     - name: test
-       run: ./gradlew buildPlugin test jacocoTestReport
-     - name: Create Release
-       id: create_release
-       uses: actions/create-release@v1
-       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-         tag_name: ${{ github.ref }}
-         release_name: Release ${{ github.ref }}
-         draft: false
-         prerelease: false
-     - name: Upload Release Asset
-       id: upload-release-asset
-       uses: actions/upload-release-asset@v1
-       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/distributions/strawberry-pycharm-plugin.zip
-          asset_name: strawberry-pycharm-plugin.zip
-          asset_content_type: application/zip
-     - name: Publish a plugin
-       run: ./gradlew publishPlugin
-       env:
-         ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.ORG_GRADLE_PROJECT_INTELLIJPUBLISHTOKEN }}
+      - uses: actions/checkout@v4
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+      - name: Test
+        run: xvfb-run -a ./gradlew test jacocoTestReport
+      - name: Build plugin
+        run: xvfb-run -a ./gradlew buildPlugin
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" ./build/distributions/strawberry-pycharm-plugin.zip --title "Release $GITHUB_REF_NAME" --notes "Release $GITHUB_REF_NAME"
+      - name: Publish plugin
+        run: xvfb-run -a ./gradlew publishPlugin
+        env:
+          ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.ORG_GRADLE_PROJECT_INTELLIJPUBLISHTOKEN }}
