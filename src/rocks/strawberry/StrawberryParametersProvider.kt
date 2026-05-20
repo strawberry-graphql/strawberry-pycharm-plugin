@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.util.QualifiedName
 import com.jetbrains.python.codeInsight.PyDataclassParameters
 import com.jetbrains.python.codeInsight.PyDataclassParametersProvider
+import com.jetbrains.python.psi.LanguageLevel
 import com.jetbrains.python.psi.PyElementGenerator
 import com.jetbrains.python.psi.types.PyCallableParameter
 import com.jetbrains.python.psi.types.PyCallableParameterImpl
@@ -16,7 +17,7 @@ class StrawberryParametersProvider: PyDataclassParametersProvider {
 
       override fun getDecoratorAndTypeAndParameters(project: Project): Triple<QualifiedName, PyDataclassParameters.Type, List<PyCallableParameter>> {
             val generator = PyElementGenerator.getInstance(project)
-            val ellipsis = generator.createEllipsis()
+            val ellipsis = generator.createExpressionFromText(LanguageLevel.PYTHON30, "...")
             val parameters = mutableListOf(PyCallableParameterImpl.psi(generator.createSingleStarParameter()))
             parameters.addAll(DATACLASS_ARGUMENTS.map { name -> PyCallableParameterImpl.nonPsi(name, null, ellipsis) })
             return Triple(DATACLASS_QUALIFIED_NAME, StrawberryType, parameters)
